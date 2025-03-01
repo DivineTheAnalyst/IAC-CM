@@ -1,6 +1,3 @@
-Sure, I can help you draft a README file for your repository. Here’s a basic structure for a README file:
-
-```markdown
 # IAC-CM (Infrastructure as Code and Configuration Management)
 
 This repository contains code and configurations for managing infrastructure using Infrastructure as Code (IaC) principles and Configuration Management.
@@ -55,6 +52,4 @@ We welcome contributions to the project. Please fork the repository and create a
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-```
 
-Feel free to customize this README file according to the specific details and requirements of your project.
