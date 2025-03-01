@@ -1,0 +1,15 @@
+- name: Install Git
+  apt:
+    name: git
+    state: present
+
+- name: Clone the application repository
+  git:
+    repo: 'https://github.com/DivineTheAnalyst/DevOps-Stage-4.git'
+    dest: /home/ubuntu/DevOps-Stage-4
+    version: main
+
+- name: Deploy containers with Docker Compose
+  command: docker-compose up -d
+  args:
+    chdir: /home/ubuntu/DevOps-Stage-4

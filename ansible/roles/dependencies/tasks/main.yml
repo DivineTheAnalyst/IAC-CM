@@ -1,0 +1,23 @@
+- name: Ensure apt keyrings directory exists
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+- name: Download Docker's official GPG key as an .asc file
+  ansible.builtin.get_url:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    dest: /etc/apt/keyrings/docker.asc
+    mode: '0644'
+- name: Add Docker APT repository for Ubuntu noble
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu noble stable"
+    state: present
+- name: Update apt cache and install prerequisites
+  ansible.builtin.apt:
+    update_cache: yes
+    name: "{{ item }}"
+    state: present
+  loop:
+    - docker.io
+    - docker-compose
+    - git

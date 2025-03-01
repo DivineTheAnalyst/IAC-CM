@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  reverse-proxy:
+    image: traefik:v2.5
+    restart: always
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  app:
+    image: your_app_image
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.app.rule=Host(`ijeawele.online`)"
+      - "traefik.http.routers.app.entrypoints=websecure"
+      - "traefik.http.routers.app.tls=true"
